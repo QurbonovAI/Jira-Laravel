@@ -23,17 +23,18 @@ class IssueController extends Controller
         }
     }
 
-    public function create()
-    {
-        try {
-            $projects = Project::all();
-            $users = User::where('is_active', true)->get();
-            return view('issues.create', compact('projects', 'users'));
-        } catch (\Exception $e) {
-            return back()->withErrors(['error' => 'Vazifa yaratish sahifasini yuklashda xato: ' . $e->getMessage()]);
-        }
+public function create()
+{
+    try {
+        $projects = Project::where('status', 'active')->get();
+        
+        $users = User::all(); 
+        
+        return view('issues.create', compact('projects', 'users'));
+    } catch (\Exception $e) {
+        return back()->withErrors(['error' => 'Xato: ' . $e->getMessage()]);
     }
-
+}
     public function store(Request $request)
     {
         try {

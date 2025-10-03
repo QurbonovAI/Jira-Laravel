@@ -25,3 +25,4 @@ class AdminMiddleware
             : redirect()->route('dashboard')->with('error', 'Faqat adminlar uchun');
     }
 }
+    
